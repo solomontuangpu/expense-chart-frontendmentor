@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Chart from "./Chart";
-import data from "../data/data.json";
+
 
 const MainCard = () => {
-  // const [lists, setLists] = useState([]);
-
-  // useEffect(()=>{
-  //     setLists(data);
-  // },[])
 
   return (
     <div className=' bg-textWhite mt-5 p-5 rounded-2xl'>
@@ -16,11 +11,8 @@ const MainCard = () => {
       </h3>
 
       {/* chart */}
-      <div className='flex justify-between items-end h-[200px]'>
-        {data?.map((data, index) => (
-          <Chart key={index} date={data.day} amount={Math.floor(data.amount)} />
-        ))}
-      </div>
+      <Chart />
+
 
       {/* divider */}
       <div className=' bg-textCream h-[1px]'></div>

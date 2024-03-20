@@ -1,17 +1,52 @@
 import React from "react";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+import dataLists from "../data/data.json";
 
-const Chart = ({ date, amount }) => {
+ChartJS.register(CategoryScale, LinearScale, BarElement);
 
-  
-
-  return (
-    <div className='py-5 flex justify-between'>
-      <div>
-        <div className={`w-[50px] h-[${amount}px] bg-primary rounded`}></div>
-        <p>{date}</p>
-      </div>
-    </div>
-  );
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: false,
+    border: false,
+    tooltip: {
+      callbacks: {
+        title: (data) => "$" + data[0].formattedValue,
+        label: () => "",
+      },
+      backgroundColor: "hsl(25, 47%, 15%)",
+      yAlign: "bottom",
+    },
+  },
 };
 
-export default Chart;
+const labels = dataLists.map((data) => {
+  return data.day;
+});
+
+export const data = {
+  labels,
+  datasets: [
+    {
+      data: dataLists.map(({ amount }) => {
+        return amount;
+      }),
+      backgroundColor: "hsl(10, 79%, 65%)",
+      hoverBackgroundColor: "hsl(186, 34%, 60%)",
+      borderRadius: "5",
+    },
+  ],
+};
+
+export default function Chart() {
+  return <Bar options={options} data={data} />;
+}
