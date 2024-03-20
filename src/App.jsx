@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <div className=' flex justify-center flex-col items-center h-screen'>
-      <main className='w-1/4'>
+      <main className=' sm:w-full md:w-3/4  w-1/4'>
         <HeaderCard />
 
         <MainCard />
